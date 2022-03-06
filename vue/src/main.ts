@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+import store from './store'
 import axios from 'axios'
 
 const app = createApp(App)
@@ -10,5 +11,6 @@ export const HTTP = axios.create({
 })
 
 app.use(router)
+app.use(store)
 
 app.mount('#app')

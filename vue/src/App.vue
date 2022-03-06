@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "@/components/HelloWorld.vue";
+import { useCartStore } from "@/store/cartStore";
+import { computed } from "vue";
+const cart = useCartStore();
+const cartCount = computed(() => (cart.count ? `(${cart.count})` : ""));
 </script>
 
 <template>
@@ -10,7 +14,7 @@ import HelloWorld from "@/components/HelloWorld.vue";
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/about">About {{cartCount}}</RouterLink>
       </nav>
     </div>
   </header>
