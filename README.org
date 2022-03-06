@@ -1,0 +1,24 @@
+#+TITLE: Challenge Eden AI
+
+* Règles
+   [[file:Challenge_-_Full_Stack_Python.pdf]]
+
+* Setup
+    #+begin_src shell
+    git clone http://github.io/KyrianC/endenai
+    cd endenai
+    docker-compose up --build
+    #+end_src
+
+    + Verify =.env= file and change if necessary
+
+    + Apply django migrations & load fixtures
+    #+begin_src shell
+    docker-compose exec backend python manage.py migrate
+    docker-compose exec backend python manage.py loaddata
+    #+end_src
+
+    + Optionaly create super user
+    #+begin_src shell
+    docker-compose exec backend python manage.py createsuperuser
+    #+end_src
