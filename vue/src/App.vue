@@ -2,19 +2,34 @@
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "@/components/HelloWorld.vue";
 import { useCartStore } from "@/store/cartStore";
-import { computed } from "vue";
+import { computed, ref, watch } from "vue";
+
+const cartLink = ref<HTMLSpanElement | null>(null);
+
 const cart = useCartStore();
 const cartCount = computed(() => (cart.count ? `(${cart.count})` : ""));
+watch(cartCount, () => {
+  // animation when adding to cart
+  cartLink.value.style.color = "white";
+  setTimeout(() => {
+    cartLink.value.style.color = "hsla(160, 100%, 37%, 1)";
+    cartLink.value.style.transition = "all 1s ease-out";
+  }, 400);
+  cartLink.value.style.transition = null;
+});
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <img alt="Vue logo" class="logo" width="300" src="@/assets/logo.png" />
 
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Accueil</RouterLink>
-        <RouterLink to="/panier">Panier {{cartCount}}</RouterLink>
+        <RouterLink to="/panier">
+          <span class="cart-link-text" ref="cartLink">Panier {{cartCount}}</span>
+        </RouterLink>
+        <RouterLink to="/tickets">Tickets</RouterLink>
       </nav>
     </div>
   </header>
@@ -25,12 +40,19 @@ const cartCount = computed(() => (cart.count ? `(${cart.count})` : ""));
 <style>
 @import "@/assets/base.css";
 
+.white {
+  color: "white" !important;
+}
+
 #app {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
 
   font-weight: normal;
+}
+
+.cart-link-text {
 }
 
 header {
