@@ -13,8 +13,8 @@ const cartCount = computed(() => (cart.count ? `(${cart.count})` : ""));
 
     <div class="wrapper">
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About {{cartCount}}</RouterLink>
+        <RouterLink to="/">Accueil</RouterLink>
+        <RouterLink to="/panier">Panier {{cartCount}}</RouterLink>
       </nav>
     </div>
   </header>

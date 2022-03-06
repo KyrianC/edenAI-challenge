@@ -1,6 +1,6 @@
 type discount = 'BD' | 'PD' | null | undefined
 
-export default function(price: number, quantity = 1, discount: discount, format = true) {
+export default function(price: number, quantity = 1, discount: discount) {
     switch (discount) {
         case 'PD': // 50% off
             price /= 2
@@ -11,9 +11,8 @@ export default function(price: number, quantity = 1, discount: discount, format 
                 quantity = ((quantity - remainder) * 2 / totalQty) + remainder
             }
         default:
-            let result: number | string = (price * quantity) / 100
-            if (format)
-                result = result.toFixed(2)
-            return result
+            const result = price * quantity
+            const formatedResult = (result / 100).toFixed(2)
+            return [formatedResult, result]
     }
 }

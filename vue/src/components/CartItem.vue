@@ -6,12 +6,12 @@ const props = defineProps<{
   product: ProductType;
 }>();
 
-const total_cost = usePrice(
+const [total_cost] = usePrice(
   props.product.base_price,
   props.product.quantity,
   props.product.discount
 );
-const base_price = usePrice(props.product.base_price);
+const [base_price] = usePrice(props.product.base_price);
 </script>
 
 <template>
