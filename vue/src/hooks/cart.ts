@@ -26,7 +26,10 @@ export default function(cart: any) {
 
     };
 
-    const clearCart = () => cart.$reset();
+    const clearCart = () => {
+        localStorage.removeItem('cart')
+        cart.$reset()
+    };
 
     return { addToCart, removeFromCart, clearCart }
 }
