@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "@/components/HelloWorld.vue";
+import Notif from "@/components/Notif.vue";
 import { useCartStore } from "@/store/cartStore";
 import { computed, ref, watch } from "vue";
 
@@ -21,13 +22,14 @@ watch(cartCount, () => {
 
 <template>
   <header>
+    <Notif class="notif" />
     <img alt="Vue logo" class="logo" width="300" src="@/assets/logo.png" />
 
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Accueil</RouterLink>
         <RouterLink to="/panier">
-          <span class="cart-link-text" ref="cartLink">Panier {{cartCount}}</span>
+          <span class="cart-link-text" ref="cartLink">Panier{{cartCount}}</span>
         </RouterLink>
         <RouterLink to="/tickets">Tickets</RouterLink>
       </nav>
@@ -50,9 +52,6 @@ watch(cartCount, () => {
   padding: 2rem;
 
   font-weight: normal;
-}
-
-.cart-link-text {
 }
 
 header {
@@ -83,6 +82,8 @@ nav {
   font-size: 12px;
   text-align: center;
   margin-top: 2rem;
+  display: flex;
+  justify-content: center;
 }
 
 nav a.router-link-exact-active {
@@ -97,6 +98,7 @@ nav a {
   display: inline-block;
   padding: 0 1rem;
   border-left: 1px solid var(--color-border);
+  width: min-content;
 }
 
 nav a:first-of-type {
@@ -131,11 +133,17 @@ nav a:first-of-type {
     margin: 0 2rem 0 0;
   }
 
+  .notif {
+    width: 90%;
+    position: absolute;
+    top: 0;
+  }
+
   nav {
     text-align: left;
     margin-left: -1rem;
     font-size: 1rem;
-
+    flex-direction: column;
     padding: 1rem 0;
     margin-top: 1rem;
   }

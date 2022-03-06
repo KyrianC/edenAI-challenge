@@ -6,15 +6,26 @@ const props = defineProps<{
   product: ProductType;
 }>();
 
-const [total_cost] = usePrice(
-  props.product.base_price,
-  props.product.quantity,
-  props.product.discount
-);
 const [base_price] = usePrice(props.product.base_price);
 </script>
 
 <template>
-  <p>{{ product.title }} - {{ base_price }}€ x{{ product.quantity }}</p>
-  <p>----{{ total_cost }}€</p>
+  <div class="product">
+    <p>{{ product.title }} - {{ base_price }}€ x{{ product.quantity }}</p>
+    <p
+      class="total-price"
+    >-- {{ usePrice(product.base_price, product.quantity, product.discount)[0] }}€</p>
+  </div>
 </template>
+
+<style scoped>
+.product {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+.total-price {
+  margin-left: 1rem;
+  font-size: 1.2rem;
+}
+</style>

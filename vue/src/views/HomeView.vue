@@ -4,6 +4,7 @@ import ProductList from "@/components/ProductList.vue";
 
 <template>
   <main>
+    <h1>Catalogue</h1>
     <Suspense>
       <template #default>
         <ProductList />
@@ -12,3 +13,9 @@ import ProductList from "@/components/ProductList.vue";
     </Suspense>
   </main>
 </template>
+
+<style scoped>
+h1 {
+  color: var(--color-heading);
+}
+</style>
