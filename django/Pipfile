@@ -9,6 +9,8 @@ psycopg2 = "*"
 djangorestframework = "*"
 drf-spectacular = "*"
 django-cors-headers = "*"
+gunicorn = "*"
+django-heroku = "*"
 
 [dev-packages]
 
