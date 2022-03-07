@@ -2,7 +2,6 @@
 import type { ProductType } from "@/types/product.ts";
 import usePrice from "@/hooks/price";
 import { useCartStore } from "@/store/cartStore";
-import useCart from "@/hooks/cart";
 import DiscountBadge from "@/components/DiscountBadge.vue";
 
 const props = defineProps<{
@@ -10,7 +9,6 @@ const props = defineProps<{
 }>();
 
 const cart = useCartStore();
-const { addToCart } = useCart(cart);
 
 const [price] = usePrice(props.product.base_price);
 </script>
@@ -27,7 +25,7 @@ const [price] = usePrice(props.product.base_price);
     </div>
     <span class="price">
       {{ price }}€
-      <button @click="addToCart(product)">Ajouter au panier</button>
+      <button @click="cart.add(product)">Ajouter au panier</button>
     </span>
   </li>
 </template>

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useCartStore } from "@/store/cartStore";
-import useCart from "@/hooks/cart";
 import CartItem from "@/components/CartItem.vue";
 import usePrice from "@/hooks/price.ts";
 import type { ProductType } from "@/types/product.ts";
@@ -10,7 +9,6 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const cart = useCartStore();
-const { addToCart, removeFromCart, clearCart } = useCart(cart);
 
 const getTotalPrice = (): [string, number] => {
   let total = 0;
@@ -41,7 +39,7 @@ const submitOrder = async () => {
       items: formatPostItems(),
       total_price: totalPrice,
     });
-    clearCart();
+    cart.clear();
     router.push(`/tickets/?ordered=success&ticket=${res.data.id}`);
   } catch (err) {
     console.error("ERROR", err);
@@ -56,15 +54,15 @@ const submitOrder = async () => {
       <li class="product" v-for="product in cart.products" :key="product.id">
         <CartItem :product="product" />
         <div class="add-remove">
-          <button @click="removeFromCart(product)">-</button>
-          <button @click="addToCart(product)">+</button>
+          <button @click="cart.remove(product)">-</button>
+          <button @click="cart.add(product)">+</button>
         </div>
       </li>
     </ul>
     <p class="total-price">Total Panier: {{ getTotalPrice()[0] }}€</p>
     <div class="cart-button">
       <button class="order" @click="submitOrder">Valider Achat</button>
-      <button class="clear-cart" @click="clearCart">Vider le Panier</button>
+      <button class="clear-cart" @click="cart.clear">Vider le Panier</button>
     </div>
   </div>
   <div v-else>Le Panier est vide</div>
