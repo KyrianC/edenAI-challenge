@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "@/components/HelloWorld.vue";
 import Notif from "@/components/Notif.vue";
 import { useCartStore } from "@/store/cartStore";
 import { computed, ref, watch } from "vue";

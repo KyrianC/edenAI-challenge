@@ -15,7 +15,8 @@ export const useCartStore = defineStore('cart', {
             } else {
                 this.products.push({ ...product, quantity: 1 });
             }
-            localStorage.setItem("cart", JSON.stringify(this));
+            // HACK stringify 'this' or 'this.$state' doesn't work in production (circular JSON format)
+            localStorage.setItem("cart", JSON.stringify({ count: this.count, products: this.products }));
         },
         remove(product: ProductType) {
             this.count--;
@@ -25,7 +26,7 @@ export const useCartStore = defineStore('cart', {
             } else {
                 this.products = [...this.products].filter((x: ProductType) => x.id !== product.id);
             }
-            localStorage.setItem("cart", JSON.stringify(this));
+            localStorage.setItem("cart", JSON.stringify({ count: this.count, products: this.products }));
         },
         clear() {
             localStorage.removeItem('cart')

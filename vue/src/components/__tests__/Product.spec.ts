@@ -2,7 +2,7 @@ import type { ProductType } from '@/types/product'
 import { describe, it, expect, fn } from 'vitest'
 import { createTestingPinia } from '@pinia/testing'
 import { mount } from '@vue/test-utils'
-import HelloWorld from '../Product.vue'
+import Product from '../Product.vue'
 
 const products: ProductType[] = [
     {
@@ -22,7 +22,7 @@ const products: ProductType[] = [
 
 describe('Single Product', () => {
     it('renders properly with store', () => {
-        const wrapper = mount(HelloWorld, {
+        const wrapper = mount(Product, {
             props: { product: products[0] },
             global: {
                 plugins: [createTestingPinia({ createSpy: fn })]
@@ -32,7 +32,7 @@ describe('Single Product', () => {
     })
 
     it("should show discount badge", () => {
-        const wrapper = mount(HelloWorld, {
+        const wrapper = mount(Product, {
             props: { product: products[0] },
             global: {
                 plugins: [createTestingPinia({ createSpy: fn })]
@@ -43,7 +43,7 @@ describe('Single Product', () => {
     })
 
     it("shouldn't show discount badge", () => {
-        const wrapper = mount(HelloWorld, {
+        const wrapper = mount(Product, {
             props: { product: products[1] },
             global: {
                 plugins: [createTestingPinia({ createSpy: fn })]
