@@ -5,9 +5,9 @@ import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
 const message = computed(() => {
   if (route.query.ordered == "success") {
-    return "Commande Acheté";
+    return "Commande Achetée";
   } else if (route.query.ordered == "error") {
-    return "Un problème est survenu";
+    return "Une erreur est survenu";
   } else {
     return null;
   }

@@ -9,7 +9,13 @@ const products: ProductType[] = res.data;
 </script>
 
 <template>
-  <ul>
+  <ul class="list">
     <Product v-for="product in products" :key="product.id" :product="product" />
   </ul>
 </template>
+
+<style scoped>
+.list {
+  padding: 0;
+}
+</style>

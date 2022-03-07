@@ -41,7 +41,8 @@ const submitOrder = async () => {
       items: formatPostItems(),
       total_price: totalPrice,
     });
-    router.push(`/?ordered=success&ticket=${res.data.id}`);
+    clearCart();
+    router.push(`/tickets/?ordered=success&ticket=${res.data.id}`);
   } catch (err) {
     console.error("ERROR", err);
     router.push("?ordered=error");
@@ -55,12 +56,12 @@ const submitOrder = async () => {
       <li class="product" v-for="product in cart.products" :key="product.id">
         <CartItem :product="product" />
         <div class="add-remove">
-          <button @click="addToCart(product)">+</button>
           <button @click="removeFromCart(product)">-</button>
+          <button @click="addToCart(product)">+</button>
         </div>
       </li>
     </ul>
-    <p class="total-price">Total: {{ getTotalPrice()[0] }}€</p>
+    <p class="total-price">Total Panier: {{ getTotalPrice()[0] }}€</p>
     <div class="cart-button">
       <button class="order" @click="submitOrder">Valider Achat</button>
       <button class="clear-cart" @click="clearCart">Vider le Panier</button>
@@ -72,7 +73,7 @@ const submitOrder = async () => {
 
 <style scoped>
 .product {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -93,7 +94,8 @@ const submitOrder = async () => {
 }
 
 .total-price {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
+  text-decoration: underline;
 }
 
 .cart-button {
@@ -108,9 +110,18 @@ const submitOrder = async () => {
   padding: 0.7em;
   margin-left: 0.5em;
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 1.1em;
 }
 .cart-button .order {
+  background-color: hsla(160, 50%, 37%, 1);
   border-color: hsla(160, 50%, 37%, 1);
+}
+
+ul {
+  padding: 0;
+}
+
+button:hover {
+  border-color: var(--color-border-hover);
 }
 </style>
