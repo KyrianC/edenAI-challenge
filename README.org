@@ -3,19 +3,35 @@
 * Règles
    [[file:Challenge_-_Full_Stack_Python.pdf]]
 
-* Setup
+* Réponse à la question:
+- Quels outils utiliseriez-vous pour automatiser une pipeline CI/CD qui se déploie sur AWS ?
+
+#+begin_quote
+    On Pourrais utiliser des outils comme Github Action et passer des tests puis déployer à chaque pull/push sur main/master. Il y a beaucoup d'autres outils dont j'ai entendu parler mais dont je ne suis pas familier comme Gitlab CI, CircleCI, Travis, ou encore Jenkins
+#+end_quote
+
+* Live Demo
+Note: Products Data might load after 30sec because backend is hosted on free heroku instance.
++ Frontend url: https://focused-visvesvaraya-7cf5f6.netlify.app/
++ Backend url: https://eden-ai-challenge.herokuapp.com/admin/ (access:u39875/km2@dTPA9jUkJV)
+
+
+* Or run localy with docker
     #+begin_src shell
     git clone http://github.io/KyrianC/endenai
     cd endenai
+    #+end_src
+    + Verify =.env= file and change if necessary
+    + build and run container
+    #+begin_src shell
     docker-compose up --build
     #+end_src
-
-    + Verify =.env= file and change if necessary
+    + if django init before db stop and restart
 
     + Apply django migrations & load fixtures
     #+begin_src shell
     docker-compose exec backend python manage.py migrate
-    docker-compose exec backend python manage.py loaddata
+    docker-compose exec backend python manage.py loaddata --app caisse caisse.json
     #+end_src
 
     + Optionaly create super user
