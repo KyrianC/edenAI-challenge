@@ -6,7 +6,7 @@ from .models import Product, ReceiptItem, Receipt
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ("id", "title", "base_price", "discount")
+        fields = ("id", "title", "base_price", "discount", "get_discount_display")
 
 
 class ReceiptItemSerializer(serializers.ModelSerializer):
@@ -15,7 +15,7 @@ class ReceiptItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ReceiptItem
-        fields = ("id", "product", "product_id", "quantity", "price", "scanned_at")
+        fields = ("id", "product", "product_id", "quantity", "price")
 
 
 class ReceiptSerializer(serializers.ModelSerializer):
@@ -27,7 +27,6 @@ class ReceiptSerializer(serializers.ModelSerializer):
 
     # handle writable nested serialization
     def create(self, validated_data):
-        print(validated_data)
         items_data = validated_data.pop("items")
         receipt = Receipt.objects.create(**validated_data)
         for item_data in items_data:
