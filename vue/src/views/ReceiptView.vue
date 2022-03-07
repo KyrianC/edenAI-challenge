@@ -29,12 +29,12 @@ if (route.query?.ticket) {
 
 <template>
   <div>
-    <h1>Ticket Recherche</h1>
-    <label>
-      Ticket ID:
+    <h1>Tickets</h1>
+    <form @submit.prevent="handleGetTicket">
+      <label>Ticket ID:</label>
       <input v-model="ticketId" min="1" />
-      <button @click="handleGetTicket">chercher</button>
-    </label>
+      <button type="submit">chercher</button>
+    </form>
     <Receipt v-if="res" :receipt="res" />
     <p v-if="notFound">Aucun ticket avec cet ID</p>
   </div>
@@ -48,6 +48,14 @@ button {
   color: var(--color-text);
   margin-left: 0.5em;
   cursor: pointer;
+}
+form label {
+  margin-bottom: 0;
+}
+form {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 h1,
 label {
