@@ -1,7 +1,7 @@
 export interface ProductType {
     id: number
     title: string
-    price: number
+    base_price: number
     discount?: 'PD' | 'BD'
     quantity?: number
 }

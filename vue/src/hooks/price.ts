@@ -1,6 +1,6 @@
 type discount = 'BD' | 'PD' | null | undefined
 
-export default function(price: number, quantity = 1, discount: discount): [string, number] {
+export default function(price: number, quantity = 1, discount?: discount): [string, number] {
     switch (discount) {
         case 'PD': // 50% off
             price /= 2

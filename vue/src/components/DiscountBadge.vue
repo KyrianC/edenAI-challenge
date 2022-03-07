@@ -8,9 +8,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <template v-if="discount">
-    <div :class="discount" class="discount">{{ message }}</div>
-  </template>
+  <div :class="discount" class="discount">{{ message }}</div>
 </template>
 
 <style scoped>

@@ -18,6 +18,7 @@ const [price] = usePrice(props.product.base_price);
     <div class="title">
       <span>{{ product.title }}</span>
       <DiscountBadge
+        v-if="product.discount"
         class="discount"
         :message="product.get_discount_display"
         :discount="product.discount"
@@ -44,6 +45,7 @@ const [price] = usePrice(props.product.base_price);
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  position: relative;
 }
 .title span {
   margin-right: 10px;

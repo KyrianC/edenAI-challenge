@@ -7,7 +7,7 @@ import ProductList from "@/components/ProductList.vue";
     <h1>Catalogue</h1>
     <Suspense>
       <template #default>
-        <ProductList />
+        <ProductList id="ProductList" />
       </template>
       <template #fallback>loading...</template>
     </Suspense>
